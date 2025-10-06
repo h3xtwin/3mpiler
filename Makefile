@@ -1,7 +1,25 @@
 CC = gcc
+CFLAGS = -Wall -Wextra -std=c99 -g
+TARGET = 3mpile
 
-3mpiler:
-	$(CC) src/lexer.c src/token.c -o 3mpiler
+# Source and object files
+SRC = src/lexer.c src/parser.c src/token.c
+OBJ = $(SRC:.c=.o)
 
+# Default rule
+all: $(TARGET)
+
+# Link all object files into the final binary
+$(TARGET): $(OBJ)
+	$(CC) $(CFLAGS) -o $@ $(OBJ)
+
+# Compile .c to .o
+%.o: %.c %.h
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# Clean up
 clean:
-	rm 3mpiler
+	rm -f $(OBJ) $(TARGET)
+
+# Optional: rebuild from scratch
+rebuild: clean all

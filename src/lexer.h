@@ -1,11 +1,11 @@
-#ifndef LEXER_H 
+#ifndef LEXER_H
 #define LEXER_H
 
-#include <stdio.h>
-#include <stdbool.h>
-#include <string.h>
-#include <stdlib.h>
 #include "token.h"
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 bool isNumber(char thing);
 
@@ -19,8 +19,11 @@ bool isDataType(char *thing);
 
 bool isSemiColon(char thing);
 
-char* subString(const char* str, int left, int right);
+bool isSemiColon(char thing);
 
+bool isUSELESS(char thing);
+
+char *subString(const char *str, int left, int right);
 
 TokenList parse_code(const char *str);
 
