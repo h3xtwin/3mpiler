@@ -1,5 +1,4 @@
 #include "lexer.h"
-#include "token.h"
 
 
 void pushCharacter(TokenList *root, TokenType type, char val){
@@ -28,7 +27,11 @@ bool isOperator(char thing){
 	return (thing == '+' || thing == '-' || thing == '/' || thing == '*' || thing == '%' || thing == '=');
 }
 
+//TODO HANDLE STRINGS
+
 bool isConstant(char *thing){
+
+	// if not string then check if it's a number
 	for (int i =0; i<strlen(thing);i++){
 		if (!isNumber(thing[i]))return false;
 	}
@@ -44,6 +47,11 @@ bool isDataType(char *thing){
 bool isSemiColon(char thing){
 	return thing == ';';
 }
+
+bool isUSELESS(char thing){
+	return (thing == '\n' || thing == ' ');
+}
+
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++=
 //++++++++++++++++++++++      PARSE CODE      ++++++++++++++++++++=
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++=
@@ -55,10 +63,10 @@ char* subString(const char* str, int left, int right){
 	}
 	
 	int len = right - left;
-	char *subStr = malloc(len+1); //allocate in the memory the length needed + 1 for the terminator \0
+	char *subStr = malloc(len+1); 
 	for (int i =0; i<len; left++, i++) subStr[i] = str[left];
 	subStr[len] = '\0';
-	return subStr;
+	if (subStr) return subStr;
 }
 
 
@@ -70,9 +78,7 @@ TokenList parse_code(const char *str){
 	right = left;
 	while(str[left]!= '\0'){
 		
-		if (str[left] == '\0') break;
 	
-
 		//check characters first
 		if (isOperator(str[left])){
 			printf("%c is an operator\n", str[left]);
@@ -84,7 +90,12 @@ TokenList parse_code(const char *str){
 			pushCharacter(tokens,SPECIAL,str[left]);
 			left++;
 		}
-		else if (str[left] == ' ') while(str[left] == ' ') left++;
+		// if it's empty space or new line skip it until something else appears
+		else if (isUSELESS(str[left])) 
+			while(isUSELESS(str[left])) 
+				left++;
+
+
 		else{
 			// if the characters dont work check string
 			right = left;
@@ -122,7 +133,7 @@ TokenList parse_code(const char *str){
 
 int main(){
 	
-	char *code = "int kilo = 53;";
+	char *code = "string name = \"kilo\";\nint isPushing = 1;";
 	parse_code(code);
 	return 0;
 }
