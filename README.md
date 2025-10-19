@@ -11,16 +11,21 @@ The program takes a .h3s file that contains the 3Script code (Rules of the langu
 ### types
 - int, string, char
 
+
 ### Declare a variable
 ``` <typename> [NAME] = <value>; ```
 
 ### Print
 ``` print <value>; ```
 
+Right now you can declare variables and print simple strings.
 
 
+# PLANS FOR THE PROJECT
 
-
+- Be able to print variables
+- if statements
+- loops
 
 # RESOURCES:
 https://www.youtube.com/watch?v=OIKL6wFjFOo&list=PLBlnK6fEyqRgPLTKYaRhcMt8pVKl4crr6
