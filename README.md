@@ -8,12 +8,21 @@ The program takes a .h3s file that contains the 3Script code (Rules of the langu
 
 # RULES OF THE LANGUAGE
 
+### types
+- int, string, char
+
 ### Declare a variable
 ``` <typename> [NAME] = <value>; ```
 
-### Assign to a variable
-``` [NAME] = <value>; ```
-
 ### Print
-``` print(<value>); ```
+``` print <value>; ```
+
+
+
+
+
+
+# RESOURCES:
+https://www.youtube.com/watch?v=OIKL6wFjFOo&list=PLBlnK6fEyqRgPLTKYaRhcMt8pVKl4crr6
+
 

@@ -3,7 +3,7 @@ CFLAGS = -Wall -Wextra -std=c99 -g
 TARGET = 3mpile
 
 # Source and object files
-SRC = src/lexer.c src/parser.c src/token.c
+SRC = src/main.c src/lexer.c src/parser.c src/codegen.c
 OBJ = $(SRC:.c=.o)
 
 # Default rule

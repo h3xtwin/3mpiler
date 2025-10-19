@@ -1,30 +1,25 @@
-#ifndef LEXER_H
-#define LEXER_H
+#pragma once
 
-#include "token.h"
 #include <stdbool.h>
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
-bool isNumber(char thing);
+typedef enum {
+  TOKEN_DATATYPE,
+  TOKEN_IDENT,
+  TOKEN_NUMBER,
+  TOKEN_STRING,
+  TOKEN_CHAR,
+  TOKEN_ASSIGN,
+  TOKEN_PLUS_ASSIGN,
+  TOKEN_MINUS_ASSIGN,
+  TOKEN_PRINT,
+  TOKEN_SEMICOLON,
+  TOKEN_EOF
+} TokenType;
 
-bool isKeyword(char *thing);
+typedef struct {
+  TokenType type;
+  char *lexeme;
+} Token;
 
-bool isOperator(char thing);
-
-bool isConstant(char *thing);
-
-bool isDataType(char *thing);
-
-bool isSemiColon(char thing);
-
-bool isSemiColon(char thing);
-
-bool isUSELESS(char thing);
-
-char *subString(const char *str, int left, int right);
-
-TokenList parse_code(const char *str);
-
-#endif
+Token *lexFile(const char *path, int *out_len);
