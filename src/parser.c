@@ -44,6 +44,7 @@ ASTNode *parsePrimary(Parser *p) {
   case TOKEN_IDENT:
     node->type = AST_VARIABLE;
     node->value = strdup(t->lexeme);
+
     break;
   default:
     free(node);
@@ -84,6 +85,7 @@ ASTNode *parseStatement(Parser *p) {
 
     ASTNode *varNode = malloc(sizeof(ASTNode));
     varNode->type = AST_VARIABLE;
+    varNode->dataType = t->lexeme;
     varNode->value = strdup(varToken->lexeme);
     varNode->left = varNode->right = NULL;
     varNode->statements = NULL;

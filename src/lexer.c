@@ -51,31 +51,31 @@ char *subString(char *str, int left, int right) {
 // ----------------- Lexer -----------------
 Token getTokenType(char *subStr) {
   if (isCall(subStr)) {
-    printf("%s is a call\n", subStr);
+    // printf("%s is a call\n", subStr);
     return (Token){TOKEN_PRINT, strdup(subStr)};
   } else if (isConstantNumber(subStr)) {
-    printf("%s is a constant number\n", subStr);
+    // printf("%s is a constant number\n", subStr);
     return (Token){TOKEN_NUMBER, strdup(subStr)};
   } else if (strcmp(subStr, "=") == 0) {
-    printf("%s is an assigner\n", subStr);
+    // printf("%s is an assigner\n", subStr);
     return (Token){TOKEN_ASSIGN, strdup(subStr)};
   } else if (strcmp(subStr, "+=") == 0) {
-    printf("%s is a plus assigner\n", subStr);
+    // printf("%s is a plus assigner\n", subStr);
     return (Token){TOKEN_PLUS_ASSIGN, strdup(subStr)};
   } else if (strcmp(subStr, "-=") == 0) {
-    printf("%s is a minus assigner\n", subStr);
+    // printf("%s is a minus assigner\n", subStr);
     return (Token){TOKEN_MINUS_ASSIGN, strdup(subStr)};
   } else if (isString(subStr)) {
-    printf("%s is a string\n", subStr);
+    // printf("%s is a string\n", subStr);
     return (Token){TOKEN_STRING, strdup(subStr)};
   } else if (isChar(subStr)) {
-    printf("%s is a char\n", subStr);
+    // printf("%s is a char\n", subStr);
     return (Token){TOKEN_CHAR, strdup(subStr)};
   } else if (isDataType(subStr)) {
-    printf("%s is a data type\n", subStr);
+    // printf("%s is a data type\n", subStr);
     return (Token){TOKEN_DATATYPE, strdup(subStr)};
   } else {
-    printf("%s is a variable\n", subStr);
+    // printf("%s is a variable\n", subStr);
     return (Token){TOKEN_IDENT, strdup(subStr)};
   }
 }

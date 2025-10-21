@@ -16,12 +16,13 @@ typedef struct ASTNode {
 
   // For leaf nodes
   char *value;
+  char *dataType;
 
   // For assignment / print
   struct ASTNode *left;
   struct ASTNode *right;
 
-  // For program root (list of statements)
+  // For program root
   struct ASTNode **statements;
   int stmt_count;
 
