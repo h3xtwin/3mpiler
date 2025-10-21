@@ -1,4 +1,4 @@
-# 3mpiler (WIP)
+# 3mpiler 
 a toy compiler for a very simple and in early phase toy language called 3Script
 
 ## How does it work?
@@ -18,12 +18,11 @@ The program takes a .h3s file that contains the 3Script code (Rules of the langu
 ### Print
 ``` print <value>; ```
 
-Right now you can declare variables and print simple strings.
+Right now you can declare variables and print strings, numbers and variables.
 
 
 # PLANS FOR THE PROJECT
 
-- Be able to print variables
 - if statements
 - loops
 
