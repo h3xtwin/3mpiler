@@ -32,11 +32,15 @@ void generateAssembly(ASTNode *program, const char *outfile) {
 
     else if (stmt->type == AST_PRINT) {
       ASTNode *val = stmt->left;
+      static int count = 0;
       if (val->type == AST_STRING) {
         // newline
-        fprintf(f, "print_str db %s, 0xa\n", val->value);
-        fprintf(f, "print_len equ $ - print_str\n");
+        fprintf(f, "print_str%d db %s, 0xa\n", count, val->value);
+      } else if (val->type == AST_VARIABLE) {
+        fprintf(f, "print_str%d db \"%s\", 0xa\n", count, val->value);
       }
+      fprintf(f, "print_len%d equ $ - print_str%d\n", count, count);
+      count++;
     }
   }
 
@@ -53,13 +57,15 @@ void generateAssembly(ASTNode *program, const char *outfile) {
     if (stmt->type == AST_PRINT) {
       ASTNode *val = stmt->left;
 
-      if (val->type == AST_STRING) {
-        fprintf(f, "    mov rax, 1        ; sys_write\n"
-                   "    mov rdi, 1        ; stdout\n"
-                   "    mov rsi, print_str ; address of string\n"
-                   "    mov rdx, print_len ; length\n"
-                   "    syscall\n");
-      }
+      static int count2 = 0;
+      fprintf(f,
+              "    mov rax, 1        ; sys_write\n"
+              "    mov rdi, 1        ; stdout\n"
+              "    mov rsi, print_str%d ; address of string\n"
+              "    mov rdx, print_len%d ; length\n"
+              "    syscall\n",
+              count2, count2);
+      count2++;
     }
   }
 
