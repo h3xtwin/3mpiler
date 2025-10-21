@@ -1,6 +1,9 @@
 int var1 = 12;
 char var2 = 'e';
 string var3 = "awesome";
+
+
+
 print "hey";
 print "six seven";
 
@@ -9,3 +12,7 @@ print 21;
 print var1
 print var2
 print var3
+
+
+
+
